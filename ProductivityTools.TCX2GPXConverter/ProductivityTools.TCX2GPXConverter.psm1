@@ -1,6 +1,10 @@
 <#
 	My Function
 #>
-function Get-Function {
-
+function Dof {
+	[Cmdletbinding()]
+	param()
+	
+	Write-Output "Hello";
+	Write-Verbose "Hello";
 }
