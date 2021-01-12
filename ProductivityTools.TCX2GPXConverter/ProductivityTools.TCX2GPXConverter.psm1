@@ -30,7 +30,6 @@ function ConvertTcX(){
 	{
 		throw "Target file $targetFile exists."
 	}
-	
 
 	$fileExe = "$PSScriptRoot\GPSBabel\gpsbabel.exe"
 	& $fileExe  -i gtrnctr -f $Path -o gpx -F $targetFile	
@@ -56,11 +55,8 @@ function Dof {
 		[string]$Path
 	)
 	
-	
-	Write-Output "Hello";
 	Write-Verbose "Hello";
 	
 	ValidateGPSBabel
-	
-	Convert($Path)
+	Convert $Path 
 }
