@@ -1,13 +1,30 @@
+
+function Get7zPath{
+	return "$PSScriptRoot\GPSBabel.7z"
+}
+
 function ValidateGPSBabel
 {
 	[Cmdletbinding()]
 	param()
 	
-	$x=Get-ChildItem GPSBabel -ErrorAction Ignore
-	if ($x -eq $null)
+	$gpsBabelPath=Get7zPath
+	$directory=Get-ChildItem GPSBabel -ErrorAction Ignore
+	if ($directory -eq $null)
 	{
+		$zip=Get-ChildItem $gpsBabelPath -ErrorAction Ignore
+		if($zip -eq $null)
+		{
+			Write-Verbose "Downloading GPS Babel."
+			Invoke-WebRequest -Uri "https://github.com/pwujczyk/ProductivityTools.ConvertTcx2Gpx/raw/master/ProductivityTools.ConvertTcx2Gpx/GPSBabel.7z" -OutFile $gpsBabelPath
+		}
+		else
+		{
+			Write-Verbose "GPS babel already downloaded.";
+		}
+		
 		Write-Verbose "Extracting GPS Babel";
-		Expand-7Zip -ArchiveFileName .\GPSBabel.7z -TargetPath GPSBabel
+		Expand-7Zip -ArchiveFileName $gpsBabelPath -TargetPath GPSBabel
 	}	
 	else
 	{
