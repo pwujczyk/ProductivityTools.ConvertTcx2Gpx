@@ -49,7 +49,7 @@ function Convert {
 }
 
 
-function Dof {
+function ConvertTcx2Gpx {
 	[Cmdletbinding()]
 	param(
 		[string]$Path
