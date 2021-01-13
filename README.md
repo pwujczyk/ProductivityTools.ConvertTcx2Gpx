@@ -13,15 +13,11 @@
 
 # Convert TCX to GPX
 
-Imports all modules from the given directory.
+Module performs bulk conversion from TCX files to GPX files. 
 <!--more-->
+Module was created to help move sport activities from Endomondo to another portal. It takes directory with TCX files and convert every file to GPX. 
 
 
-Not all modules written by me are pushed directly to the powershellgallery.com. At first, usually, I am storing them locally and use for some time. Some of them won't be published as they are very specific to my needs and won't be valuable for others.
-
-To import them in the convenient way I am using an Import-ModulesFromDirectory module. 
-
-It searches through the directory to find psm1 files and performs **Import-Module** on them.
 <!--og-image-->
 ![Import modules from Directory](Images/ImportModulesFromDirectory.png)
 
@@ -31,4 +27,3 @@ Import-ModulesFromDirectory -Recurse -Verbose
 Import-ModulesFromDirectory -Recurse -Verbose -Path D:\Powershell\Common\Modules\
 ```
 
-Cmdlet has two switches: **Recuse** and **Path**. If **Path** is not provided it uses the current directory.
