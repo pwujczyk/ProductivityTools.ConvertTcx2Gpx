@@ -9,7 +9,7 @@ function ValidateGPSBabel
 	param()
 	
 	$gpsBabelPath=Get7zPath
-	$directory=Get-ChildItem GPSBabel -ErrorAction Ignore
+	$directory=Get-ChildItem "$PSScriptRoot\GPSBabel" -ErrorAction Ignore
 	if ($directory -eq $null)
 	{
 		$zip=Get-ChildItem $gpsBabelPath -ErrorAction Ignore
@@ -23,8 +23,11 @@ function ValidateGPSBabel
 			Write-Verbose "GPS babel already downloaded.";
 		}
 		
-		Write-Verbose "Extracting GPS Babel";
-		Expand-7Zip -ArchiveFileName $gpsBabelPath -TargetPath GPSBabel
+		Write-Verbose "Extracting GPS Babel from $gpsBabelPath";
+		
+		$targetPath="$PSScriptRoot\GPSBabel"
+		Write-Verbose "Extracting GPS Babel to $targetPath";
+		Expand-7Zip -ArchiveFileName $gpsBabelPath -TargetPath $targetPath
 	}	
 	else
 	{
@@ -66,7 +69,7 @@ function Convert {
 }
 
 
-function ConvertTcx2Gpx {
+function Convert-Tcx2Gpx {
 	[Cmdletbinding()]
 	param(
 		[string]$Path
